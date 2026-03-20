@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { getAccessibleProjects, getIssuesByProject } from "./jira";
+import {
+  getAccessibleProjects,
+  getIssuesByProject,
+  searchIssues,
+  getIssueById,
+} from "./jira";
 
 describe("getAccessibleProjects", () => {
   it("returns all accessible projects", () => {
@@ -37,5 +42,50 @@ describe("getIssuesByProject", () => {
   it("returns null for an unknown project", () => {
     const issues = getIssuesByProject("UNKNOWN");
     expect(issues).toBeNull();
+  });
+});
+
+describe("searchIssues", () => {
+  it("returns matching issues for a project", () => {
+    const results = searchIssues("ALPHA", "CI/CD");
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toBe("ALPHA-1");
+  });
+
+  it("returns empty array when no issues match", () => {
+    const results = searchIssues("ALPHA", "nonexistent query");
+    expect(results).toHaveLength(0);
+  });
+
+  it("scopes search to the given project", () => {
+    const results = searchIssues("ALPHA", "design");
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toBe("ALPHA-2");
+  });
+
+  it("is case-insensitive", () => {
+    const results = searchIssues("ALPHA", "ci/cd");
+    expect(results).toHaveLength(1);
+  });
+});
+
+describe("getIssueById", () => {
+  it("returns the issue when it exists", () => {
+    const issue = getIssueById("ALPHA-1");
+    expect(issue).not.toBeNull();
+    expect(issue!.id).toBe("ALPHA-1");
+    expect(issue!.summary).toBe("Set up CI/CD pipeline");
+  });
+
+  it("returns null for a non-existent issue", () => {
+    const issue = getIssueById("NOPE-999");
+    expect(issue).toBeNull();
+  });
+
+  it("returns issues from different projects", () => {
+    const alpha = getIssueById("ALPHA-1");
+    const beta = getIssueById("BETA-1");
+    expect(alpha).not.toBeNull();
+    expect(beta).not.toBeNull();
   });
 });
