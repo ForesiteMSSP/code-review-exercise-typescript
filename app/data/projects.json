@@ -1,0 +1,17 @@
+[
+  {
+    "key": "ALPHA",
+    "name": "Project Alpha",
+    "accessible": true
+  },
+  {
+    "key": "BETA",
+    "name": "Project Beta",
+    "accessible": true
+  },
+  {
+    "key": "SECRET",
+    "name": "Project Secret",
+    "accessible": false
+  }
+]
