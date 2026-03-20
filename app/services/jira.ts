@@ -11,6 +11,7 @@ import accessibleProjects from "~/data/accessible-projects.json";
 import alphaIssues from "~/data/issues-alpha.json";
 import betaIssues from "~/data/issues-beta.json";
 import secretIssues from "~/data/issues-secret.json";
+import { executeJql } from "./jql";
 
 export interface Project {
   key: string;
@@ -29,6 +30,12 @@ const issuesByProject: Record<string, Issue[]> = {
   BETA: betaIssues as Issue[],
   SECRET: secretIssues as Issue[],
 };
+
+const allIssues: (Issue & { project: string })[] = Object.entries(
+  issuesByProject,
+).flatMap(([project, issues]) =>
+  issues.map((issue) => ({ ...issue, project })),
+);
 
 /**
  * Returns the projects that are accessible to users.
@@ -52,4 +59,20 @@ export function getIssuesByProject(projectKey: string): Issue[] | null {
   }
   const issues = issuesByProject[projectKey];
   return issues ?? null;
+}
+
+/**
+ * Searches for issues within a project using a text query.
+ * Constructs a JQL query scoped to the given project and filters by summary text.
+ * @param {string} projectKey - The project to search within.
+ * @param {string} searchText - The text to search for in issue summaries.
+ * @returns {Issue[]} The matching issues.
+ */
+export function searchIssues(projectKey: string, searchText: string): Issue[] {
+  const jql = `project = "${projectKey}" AND summary ~ "${searchText}"`;
+  return executeJql(jql, allIssues);
+}
+
+export function getIssueById(issueId: string): Issue | null {
+  return allIssues.find((issue) => issue.id === issueId) ?? null;
 }
