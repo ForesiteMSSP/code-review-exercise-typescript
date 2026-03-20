@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ALPHA-1",
+    "summary": "Set up CI/CD pipeline",
+    "status": "Done",
+    "priority": "High"
+  },
+  {
+    "id": "ALPHA-2",
+    "summary": "Design database schema",
+    "status": "Done",
+    "priority": "High"
+  },
+  {
+    "id": "ALPHA-3",
+    "summary": "Implement user authentication",
+    "status": "In Progress",
+    "priority": "High"
+  },
+  {
+    "id": "ALPHA-4",
+    "summary": "Create landing page",
+    "status": "In Progress",
+    "priority": "Medium"
+  },
+  {
+    "id": "ALPHA-5",
+    "summary": "Add email notification service",
+    "status": "To Do",
+    "priority": "Medium"
+  },
+  {
+    "id": "ALPHA-6",
+    "summary": "Write API documentation",
+    "status": "To Do",
+    "priority": "Low"
+  },
+  {
+    "id": "ALPHA-7",
+    "summary": "Set up error monitoring",
+    "status": "To Do",
+    "priority": "Medium"
+  }
+]

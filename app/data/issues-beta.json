@@ -1,0 +1,38 @@
+[
+  {
+    "id": "BETA-1",
+    "summary": "Define product requirements",
+    "status": "Done",
+    "priority": "High"
+  },
+  {
+    "id": "BETA-2",
+    "summary": "Create wireframes",
+    "status": "Done",
+    "priority": "High"
+  },
+  {
+    "id": "BETA-3",
+    "summary": "Build component library",
+    "status": "In Progress",
+    "priority": "High"
+  },
+  {
+    "id": "BETA-4",
+    "summary": "Implement search functionality",
+    "status": "To Do",
+    "priority": "Medium"
+  },
+  {
+    "id": "BETA-5",
+    "summary": "Add unit tests for API layer",
+    "status": "To Do",
+    "priority": "High"
+  },
+  {
+    "id": "BETA-6",
+    "summary": "Performance audit",
+    "status": "To Do",
+    "priority": "Low"
+  }
+]
