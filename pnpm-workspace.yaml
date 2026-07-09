@@ -1,1 +1,7 @@
-onlyBuiltDependencies: '["esbuild"]'
+onlyBuiltDependencies: 
+  - esbuild
+
+minimumReleaseAge: 4320 # 3 days
+
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 4320 # 3 days
